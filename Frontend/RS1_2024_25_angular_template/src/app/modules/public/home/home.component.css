@@ -1,0 +1,94 @@
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  color: #f4d8d8;
+  background-color: #5a2424;
+  overflow: hidden;
+}
+
+.landing-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  position: relative;
+}
+
+.left-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #5a2424;
+  color: #f4d8d8;
+  text-align: center;
+  /*padding: 2rem;*/
+}
+
+.title-container h1 {
+  font-size: 4rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.title-container p {
+  font-size: 1.5rem;
+  margin: 1% auto 2% auto;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap:3%;
+  width: 100%;
+  margin-top:3%;
+}
+
+button {
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 100%;
+}
+
+button.login {
+  background-color: #dc8080;
+  color: white;
+}
+
+button.signup {
+  background-color: #dc8080;
+  color:white;
+}
+
+button:hover{
+  opacity: 0.8;
+  transform: scale(1.1);
+}
+
+.right-panel {
+  flex: 1;
+  position: relative;
+}
+
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+
+.overlay-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0.9;
+  z-index: -1;
+}

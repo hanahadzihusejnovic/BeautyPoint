@@ -1,0 +1,81 @@
+<div class="modal">
+  <button class="close-btn" (click)="closeModal()">✖</button>
+  <h2>Create New User</h2>
+
+  <form *ngIf="userForm" [formGroup]="userForm" (ngSubmit)="submitForm()">
+
+    <div>
+      <label for="firstName">First Name:</label>
+      <input id="firstName" formControlName="firstName" type="text" />
+      <div *ngIf="userForm.get('firstName')?.invalid && userForm.get('firstName')?.touched" class="error">
+        First Name is required.
+      </div>
+    </div>
+
+    <div>
+      <label for="lastName">Last Name:</label>
+      <input id="lastName" formControlName="lastName" type="text" />
+      <div *ngIf="userForm.get('lastName')?.invalid && userForm.get('lastName')?.touched" class="error">
+        Last Name is required.
+      </div>
+    </div>
+
+    <div>
+      <label for="dateOfBirth">Date of Birth:</label>
+      <input id="dateOfBirth" formControlName="dateOfBirth" type="date" />
+      <div *ngIf="userForm.get('dateOfBirth')?.invalid && userForm.get('dateOfBirth')?.touched" class="error">
+        Date of Birth is required.
+      </div>
+    </div>
+
+    <div>
+      <label for="address">Address:</label>
+      <input id="address" formControlName="address" type="text" />
+      <div *ngIf="userForm.get('address')?.invalid && userForm.get('address')?.touched" class="error">
+        Address is required.
+      </div>
+    </div>
+
+    <div>
+      <label for="city">City:</label>
+      <input id="city" formControlName="city" type="text" />
+      <div *ngIf="userForm.get('city')?.invalid && userForm.get('city')?.touched" class="error">
+        City is required.
+      </div>
+    </div>
+
+    <div>
+      <label for="email">Email:</label>
+      <input id="email" formControlName="email" type="text" />
+      <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched" class="error">
+        Email is required.
+      </div>
+    </div>
+
+    <div>
+      <label for="username">Username:</label>
+      <input id="username" formControlName="username" type="text" />
+      <div *ngIf="userForm.get('username')?.invalid && userForm.get('username')?.touched" class="error">
+        Username is required.
+      </div>
+    </div>
+
+    <div>
+      <label for="password">Password:</label>
+      <input id="password" formControlName="password" type="text" />
+      <div *ngIf="userForm.get('password')?.invalid && userForm.get('password')?.touched" class="error">
+        Password is required.
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="isSubmitting">Create User</button>
+
+    <div *ngIf="errorMessage" class="error">
+      {{ errorMessage }}
+    </div>
+
+    <div *ngIf="successMessage" class="success">
+      {{ successMessage }}
+    </div>
+  </form>
+</div>

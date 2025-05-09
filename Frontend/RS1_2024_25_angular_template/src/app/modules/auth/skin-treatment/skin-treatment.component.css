@@ -1,0 +1,107 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #f4dede;
+  color: #5a2424;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.header {
+  align-items: center;
+  width: 100%;
+  background-color: #5a2424;
+  color: #f4dede;
+  padding: 2% 10%;
+}
+
+.logo {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.sub-title,  .price-title {
+  font-size: 1.7rem;
+}
+.sub-title {
+  font-weight: normal;
+}
+
+.price-title{
+  text-align: center;
+
+}
+
+.price-list {
+  margin: 2% auto;
+  width: 80%;
+  text-align: center;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 1.3%;
+  border-bottom: 1px solid #d8b6b6;
+}
+
+th {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #5a2424;
+}
+
+td {
+  font-size: 1rem;
+  color: #5a2424;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin-top: 1.5%;
+}
+
+.btn {
+  padding: 1% 3%;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.reserve-btn {
+  background-color: #dc8080;
+  color: white;
+}
+
+.reserve-btn:hover {
+  opacity: 0.8;
+  transform: scale(1.1);
+}
+
+.back-btn {
+  background-color: #dc8080;
+  color: white;
+}
+
+.back-btn:hover {
+  opacity: 0.8;
+  transform: scale(1.1);
+}
+
+
+

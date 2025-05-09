@@ -1,0 +1,75 @@
+<div class="modal">
+  <button class="close-btn" (click)="closeModal()">✖</button>
+  <h2>Create New Payment</h2>
+
+  <form *ngIf="paymentForm" [formGroup]="paymentForm" (ngSubmit)="submitForm()">
+    <div>
+      <label for="orderId">Order ID:</label>
+      <input id="orderId" formControlName="orderId" type="number" />
+      <div *ngIf="paymentForm.get('orderId')?.invalid && paymentForm.get('orderId')?.touched" class="error">
+        Order ID is required.
+      </div>
+    </div>
+
+    <div>
+      <label for="paymentDate">Payment Date:</label>
+      <input id="paymentDate" formControlName="paymentDate" type="date" />
+      <div *ngIf="paymentForm.get('paymentDate')?.invalid && paymentForm.get('paymentDate')?.touched" class="error">
+        Payment date is required.
+      </div>
+    </div>
+
+    <div>
+      <label for="amount">Amount:</label>
+      <input id="amount" formControlName="amount" type="number" />
+      <div *ngIf="paymentForm.get('amount')?.invalid && paymentForm.get('amount')?.touched" class="error">
+        <span *ngIf="paymentForm.get('amount')?.errors?.['required']">Amount is required.</span>
+        <span *ngIf="paymentForm.get('amount')?.errors?.['min']">Amount must be at least 0.</span>
+      </div>
+    </div>
+
+    <div>
+      <label for="paymentMethod">Payment Method:</label>
+      <select id="paymentMethod" formControlName="paymentMethod">
+        <option value="" disabled selected>Select method</option>
+        <option *ngFor="let method of paymentMethods" [value]="method">
+          {{ method }}
+        </option>
+      </select>
+      <div *ngIf="paymentForm.get('paymentMethod')?.invalid && paymentForm.get('paymentMethod')?.touched" class="error">
+        Please select a payment method.
+      </div>
+    </div>
+
+    <div>
+      <label for="paymentStatus">Payment Status:</label>
+      <select id="paymentStatus" formControlName="paymentStatus">
+        <option value="" disabled selected>Select status</option>
+        <option *ngFor="let status of paymentStatuses" [value]="status">
+          {{ status }}
+        </option>
+      </select>
+      <div *ngIf="paymentForm.get('paymentStatus')?.invalid && paymentForm.get('paymentStatus')?.touched" class="error">
+        Please select a payment status.
+      </div>
+    </div>
+
+    <div>
+      <label for="transactionId">Transaction ID:</label>
+      <input id="transactionId" formControlName="transactionId" type="number" />
+      <div *ngIf="paymentForm.get('transactionId')?.invalid && paymentForm.get('transactionId')?.touched" class="error">
+        Transaction ID is required.
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="isSubmitting">Create Payment</button>
+
+    <div *ngIf="errorMessage" class="error">
+      {{ errorMessage }}
+    </div>
+
+    <div *ngIf="successMessage" class="success">
+      {{ successMessage }}
+    </div>
+  </form>
+</div>

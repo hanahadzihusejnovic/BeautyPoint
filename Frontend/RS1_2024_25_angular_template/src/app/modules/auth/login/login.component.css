@@ -1,0 +1,159 @@
+.login-container {
+  color: white;
+  text-align: center;
+  padding: 3%;
+}
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+
+.title-container {
+  position: absolute;
+  top: 3%;
+  left: 3%;
+  color: #f4d8d8;
+}
+
+.title-container h1 {
+  font-size: 4rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.title-container p {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.form-container {
+  margin: 13% auto 0;
+  width: 50%;
+  max-width: 150%
+}
+
+.input-group {
+  margin-bottom: 2%;
+  text-align: left;
+  width: 100%;
+}
+
+.input-group label {
+  font-size: 1rem;
+  display: block;
+  margin-bottom: 2%;
+  color: #f4d8d8;
+}
+
+.input-group input {
+  width: 97%;
+  padding: 1.5%;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: rgba(212, 158, 158, 0.5);
+  color: white;
+}
+
+.checkbox-group {
+  display: flex;
+  margin-bottom: 3%;
+  justify-content: space-between;
+}
+
+.checkbox-group a {
+  font-size: 1rem;
+  color: #f4d8d8;
+  text-decoration: none;
+}
+
+.checkbox-group label{
+  font-size: 1rem;
+  color: #f4d8d8;
+}
+
+.checkbox-group a:hover {
+  opacity: 30%;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 3%;
+}
+
+button {
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 100%;
+}
+
+button.get-started {
+  background-color: #dc8080;
+  color: white;
+}
+
+button.cancel {
+  background-color: #dc8080;
+  color: white;
+}
+
+button:hover {
+  opacity: 0.8;
+  transform: scale(1.1);
+}
+
+.sign-up-link {
+  font-size: 1rem;
+  margin-top: 4%;
+  color: #f4d8d8;
+  text-align: right;
+}
+
+.sign-up-link a {
+  color: #f4d8d8;
+  text-decoration: none;
+}
+
+.sign-up-link a:hover {
+  opacity: 30%;
+}
+
+.language-select-container {
+  width: 40%;
+  max-width: 100%;
+}
+
+.language-select {
+  margin-left: 230%;
+  padding: 0.8rem;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  background-color: rgba(212, 158, 158, 0.5);
+  color: white;
+  font-size: 1rem;
+}
+
+.language-select option {
+  background-color: #f4d8d8;
+  color: black;
+}
+
+.language-select:focus {
+  border-color: #dc8080;
+}
+
+.snackbar-error {
+  background-color: #d32f2f !important;
+  color: white !important;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+}

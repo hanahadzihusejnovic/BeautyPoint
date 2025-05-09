@@ -1,0 +1,64 @@
+<div class="modal">
+  <button class="close-btn" (click)="closeModal()">✖</button>
+  <h2>Create New Reservation</h2>
+
+  <form *ngIf="reservationForm" [formGroup]="reservationForm" (ngSubmit)="submitForm()">
+    <div>
+      <label for="userId">User:</label>
+      <select id="userId" formControlName="userId" *ngIf="users.length > 0">
+        <option [ngValue]="null" disabled>Select user</option>
+        <option *ngFor="let user of users" [value]="user.id">
+          {{ user.firstName }} {{ user.lastName }}
+        </option>
+      </select>
+
+      <div *ngIf="reservationForm.get('userId')?.invalid && reservationForm.get('userId')?.touched" class="error">
+        Please select a user.
+      </div>
+    </div>
+
+    <div>
+      <label for="serviceId">Service:</label>
+      <select id="serviceId" formControlName="serviceId">
+        <option [ngValue]="null" disabled>Select service</option>
+        <option *ngFor="let service of services" [value]="service.id">
+          {{ service.serviceName }}
+        </option>
+      </select>
+      <div *ngIf="reservationForm.get('serviceId')?.invalid && reservationForm.get('serviceId')?.touched" class="error">
+        Please select a service.
+      </div>
+    </div>
+
+    <div>
+      <label for="reservationDate">Date:</label>
+      <input id="reservationDate" formControlName="reservationDate" type="datetime-local" />
+      <div *ngIf="reservationForm.get('reservationDate')?.invalid && reservationForm.get('reservationDate')?.touched" class="error">
+        Please select a date.
+      </div>
+    </div>
+
+    <div>
+      <label for="reservationStatus">Status:</label>
+      <select id="reservationStatus" formControlName="reservationStatus">
+        <option [ngValue]="null" disabled>Select status</option>
+        <option value="Pending">Pending</option>
+        <option value="Confirmed">Confirmed</option>
+        <option value="Cancelled">Cancelled</option>
+      </select>
+      <div *ngIf="reservationForm.get('reservationStatus')?.invalid && reservationForm.get('reservationStatus')?.touched" class="error">
+        Please select a status.
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="isSubmitting">Create Reservation</button>
+
+    <div *ngIf="errorMessage" class="error">
+      {{ errorMessage }}
+    </div>
+
+    <div *ngIf="successMessage" class="success">
+      {{ successMessage }}
+    </div>
+  </form>
+</div>

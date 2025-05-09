@@ -1,0 +1,36 @@
+<div class="modal">
+  <button class="close-btn" (click)="closeModal()">✖</button>
+  <h2>Update Treatment</h2>
+
+  <form [formGroup]="treatmentForm" (ngSubmit)="submitForm()">
+    <div>
+      <label for="serviceName">Service Name:</label>
+      <input id="serviceName" formControlName="serviceName" type="text" />
+    </div>
+
+    <div>
+      <label for="treatmentDescription">Description:</label>
+      <textarea id="treatmentDescription" formControlName="treatmentDescription"></textarea>
+    </div>
+
+    <div>
+      <label for="treatmentPrice">Price:</label>
+      <input id="treatmentPrice" formControlName="treatmentPrice" type="number" min="0" />
+    </div>
+
+    <div>
+      <label for="treatmentCategoryId">Category:</label>
+      <select id="treatmentCategoryId" formControlName="treatmentCategoryId">
+        <option value="" disabled>Select category</option>
+        <option *ngFor="let category of categories" [value]="category.id">
+          {{ category.categoryName }}
+        </option>
+      </select>
+    </div>
+
+    <button type="submit" [disabled]="isSubmitting">Update Treatment</button>
+
+    <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+    <div *ngIf="successMessage" class="success">{{ successMessage }}</div>
+  </form>
+</div>

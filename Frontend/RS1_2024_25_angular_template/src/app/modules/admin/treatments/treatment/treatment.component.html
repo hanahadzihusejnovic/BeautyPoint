@@ -1,0 +1,58 @@
+<div class="reservation-container">
+  <h2>Treatment List</h2>
+
+  <input
+    type="text"
+    [(ngModel)]="searchQuery"
+    placeholder="Search treatments..."
+    class="search-box"
+  />
+
+  <img src="images/background.png" alt="Background" class="background-image" />
+
+  <button (click)="openCreateTreatmentModal()" class="create-btn">Create New</button>
+
+  <table class="reservation-table">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Service Name</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Category</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let treatment of filterTreatments()">
+      <td>{{ treatment.id }}</td>
+      <td>{{ treatment.serviceName }}</td>
+      <td>{{ treatment.treatmentDescription }}</td>
+      <td>{{ treatment.treatmentPrice | currency: 'BAM ' }}</td>
+      <td>{{ treatment.treatmentCategoryName }}</td>
+      <td>
+        <div class="actions-container">
+          <button (click)="toggleActions(treatment.id)" class="actions-btn">Actions</button>
+          <div *ngIf="activeTreatmentId === treatment.id" class="dropdown-menu">
+            <button (click)="openUpdateTreatmentModal(treatment)" class="dropdown-item">Update</button>
+            <button (click)="deleteTreatment(treatment.id)" class="dropdown-item delete">Delete</button>
+          </div>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div class="pagination">
+    <button (click)="prevPage()" [disabled]="currentPage === 1" class="page-btn">Previous</button>
+    <span>Page {{ currentPage }}</span>
+    <button (click)="nextPage()" class="page-btn">Next</button>
+  </div>
+
+  <button (click)="generatePDF()" class="generate-report-button">Generate Report</button>
+
+  <div class="back-button-container">
+    <button class="back-button" (click)="goBack()">Back</button>
+  </div>
+
+</div>

@@ -1,0 +1,60 @@
+<body>
+<div class="background-image">
+  <img src="images/background.png" alt="Background">
+</div>
+
+<aside class="sidebar">
+
+  <div class="login-container">
+      <div class="title-container">
+        <h1>BeautyPoint</h1>
+        <p>Shop</p>
+      </div>
+  </div>
+
+  <ul class="nav-links">
+    <li><a href="#">Appointments</a></li>
+    <li><a href="#" routerLink="/favorites">Favourites</a></li>
+    <li><a href="#" routerLink="/shopping-cart">Shopping cart</a></li>
+    <li><a href="#">My profile</a></li>
+    <li><a href="#">About us</a></li>
+    <li><a (click)="toggleDarkMode()">{{ isDarkMode ? 'Light theme' : 'Dark theme'}}</a></li>
+  </ul>
+
+  <div class="sidebar-art">
+    <img src="images/woman-outline.png" alt="Art" />
+  </div>
+</aside>
+
+<main>
+  <section class="categories"  [ngClass]="{'dark-mode': isDarkMode}">
+
+    <button class="category circle top-right" routerLink="/body-care" [ngClass]="{'dark-mode': isDarkMode}">
+      <div class="circle-content">
+        <img src="images/body-crveni.png" alt="Body care 1" class="product-img img1">
+        <img src="images/body-bijeli.png" alt="Body care 2" class="product-img img2">
+      </div>
+      <h2 [ngClass]="{'dark-mode': isDarkMode}">Body care</h2>
+    </button>
+
+    <button class="category circle center-left" routerLink="/skin-care" [ngClass]="{'dark-mode': isDarkMode}">
+      <div class="circle-content">
+        <img src="images/skin-krema.png" alt="Skin care 1" class="product-img img1">
+        <img src="images/skin-ulje.png" alt="Skin care 2" class="product-img img2">
+      </div>
+      <h2 [ngClass]="{'dark-mode': isDarkMode}">Skin care</h2>
+    </button>
+
+    <button class="category circle bottom-right" routerLink="/hair-care" [ngClass]="{'dark-mode': isDarkMode}">
+      <div class="circle-content">
+        <img src="images/hair-pumpica.png" alt="Hair care 1" class="product-img img1">
+        <img src="images/hair-maska.png" alt="Hair care 2" class="product-img img2">
+      </div>
+      <h2 [ngClass]="{'dark-mode': isDarkMode}">Hair care</h2>
+    </button>
+  </section>
+
+  <button class="logout-btn" routerLink="/logout" [ngClass]="{'dark-mode': isDarkMode}">Logout</button>
+  <button class="back-btn" routerLink="/client-dashboard" [ngClass]="{'dark-mode': isDarkMode}">Back</button>
+</main>
+</body>

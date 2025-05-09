@@ -1,0 +1,112 @@
+<div class="payments-container">
+  <h2>Payments</h2>
+
+  <div class="search-bar-container">
+    <input
+      type="text"
+      [(ngModel)]="searchText"
+      (input)="onSearchChange()"
+      placeholder="Search by Order ID, Amount or Payment Status..."
+      class="search-bar"
+    />
+  </div>
+
+  <div *ngIf="isLoading">Loading...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+  <img src="images/background.png" alt="Background" class="background-image" />
+
+  <button (click)="openCreatePaymentModal()" class="create-btn">Create New</button>
+
+  <div class="sort-container">
+    <button (click)="toggleSortDropdown()" class="sort-button">
+      Sort
+    </button>
+    <div *ngIf="showSortDropdown" class="sort-dropdown">
+      <label for="sortBy">Sort By:</label>
+      <select [(ngModel)]="sortBy" id="sortBy" (change)="onSortChange()">
+        <option value="orderId">Order ID</option>
+        <option value="paymentDate">Payment Date</option>
+        <option value="amount">Amount</option>
+        <option value="paymentMethod">Payment Method</option>
+        <option value="paymentStatus">Payment Status</option>
+        <option value="transactionId">Transaction ID</option>
+      </select>
+
+      <label for="sortDirection">Direction:</label>
+      <select [(ngModel)]="sortDirection" id="sortDirection" (change)="onSortChange()">
+        <option value="asc">Ascending</option>
+        <option value="desc">Descending</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="payment-table-container">
+    <table *ngIf="!isLoading && !error">
+      <thead>
+      <tr>
+        <th (click)="sortPayments('id')" [ngClass]="{'sorted': sortedColumn === 'id'}">ID</th>
+        <th (click)="sortPayments('orderId')" [ngClass]="{'sorted': sortedColumn === 'orderId'}">Order ID</th>
+        <th (click)="sortPayments('paymentDate')" [ngClass]="{'sorted': sortedColumn === 'paymentDate'}">Payment Date</th>
+        <th (click)="sortPayments('amount')" [ngClass]="{'sorted': sortedColumn === 'amount'}">Amount</th>
+        <th (click)="sortPayments('paymentMethod')" [ngClass]="{'sorted': sortedColumn === 'paymentMethod'}">Payment Method</th>
+        <th (click)="sortPayments('paymentStatus')" [ngClass]="{'sorted': sortedColumn === 'paymentStatus'}">Payment Status</th>
+        <th (click)="sortPayments('transactionId')" [ngClass]="{'sorted': sortedColumn === 'transactionId'}">Transaction ID</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let payment of filteredPayments">
+        <td>{{ payment.id }}</td>
+        <td>{{ payment.orderId }}</td>
+        <td>{{ payment.paymentDate | date:'dd/MM/yyyy HH:mm:ss' }}</td>
+        <td>{{ payment.amount | currency:'BAM ' }}</td>
+        <td>{{ payment.paymentMethod }}</td>
+        <td>{{ payment.paymentStatus }}</td>
+        <td>{{ payment.transactionId }}</td>
+        <td>
+          <div class="actions-container">
+            <button class="actions-btn" (click)="toggleActions(payment.orderId.toString())">Actions</button>
+            <div *ngIf="openDropdown === payment.orderId.toString()" class="dropdown-menu">
+              <button class="dropdown-item" (click)="editPayment(payment)">Update</button>
+              <button class="dropdown-item delete" (click)="deletePayment(payment.id)">Delete</button>
+            </div>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div class="pagination">
+      <button (click)="prevPage()" [disabled]="currentPage === 1" class="page-btn">Previous</button>
+      <span>Page {{ currentPage }}</span>
+      <button (click)="nextPage()" class="page-btn">Next</button>
+    </div>
+
+    <button (click)="generatePDF()" class="generate-report-button">Generate Report</button>
+    <div class="drag-drop-container"
+         (dragover)="onDragOver($event)"
+         (dragleave)="onDragLeave()"
+         (drop)="onFileDrop($event)">
+      <p *ngIf="!pdfUrl">Drag & Drop PDF file here or <span (click)="fileInput.click()">click here to upload</span></p>
+      <input #fileInput type="file" accept="application/pdf" hidden (change)="onFileSelect($event)" />
+      <div *ngIf="pdfUrl" class="pdf-preview">
+        <iframe [src]="pdfUrl" width="100%" height="500px"></iframe>
+      </div>
+      <button class="upload-pdf-button" (click)="uploadPDF()" [disabled]="!selectedFile">Upload PDF</button>
+    </div>
+
+
+    <div class="uploaded-pdf-list">
+      <h3>Uploaded PDF Reports</h3>
+      <ul>
+        <li *ngFor="let pdf of uploadedFiles">
+          <a (click)="downloadPdf(pdf)"> 📄 {{ pdf }}</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="back-button-container">
+      <button class="back-button" (click)="goBack()">Back</button>
+    </div>
+
+  </div>
+</div>

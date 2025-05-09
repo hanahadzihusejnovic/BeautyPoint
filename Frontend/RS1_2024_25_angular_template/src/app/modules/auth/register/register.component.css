@@ -1,0 +1,155 @@
+
+.body {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  color: #f4d8d8;
+  overflow: hidden;
+}
+
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+
+.title-container {
+  position: absolute;
+  top: 3%;
+  left: 3%;
+  text-align: left;
+}
+
+.title-container h1 {
+  font-size: 4rem;
+  margin: 0;
+}
+
+.title-container p {
+  font-size: 2rem;
+  margin: 0 0 0 23%;
+}
+
+.input-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 3%;
+  gap: 5%;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+
+}
+
+.input-group label {
+  font-size: 1rem;
+  margin-bottom: 5%;
+}
+
+.input-group input {
+  padding: 7%;
+  padding-left: 3%;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: rgba(212, 158, 158, 0.5);
+  color: white;
+}
+
+.input-group #date{
+  padding-right: 1%;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 7%;
+  margin-top: 7%;
+}
+
+.buttons .btn {
+  padding: 4% 10%;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #fff;
+  background-color: #dc8080;
+}
+
+.buttons .btn:hover {
+  opacity: 0.8;
+  transform: scale(1.1);
+}
+
+.sign-up-container p {
+  margin-top: 4%;
+  font-size: 1rem;
+  color: #d49e9e;
+}
+
+.sign-up-container a {
+  text-decoration: none;
+  color: #d49e9e;
+}
+
+.sign-up-container a:hover {
+  color: #764f4f;
+}
+
+.language-select-container {
+  width: 40%;
+  max-width: 100%;
+}
+
+.language-select {
+  margin-left: 130%;
+  padding: 0.8rem;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  background-color: rgba(212, 158, 158, 0.5);
+  color: white;
+  font-size: 1rem;
+}
+
+.language-select option {
+  background-color: #f4d8d8;
+  color: black;
+}
+
+.language-select:focus {
+  border-color: #dc8080;
+}
+
+.input-group-date {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-right: 10%;
+}
+
+.input-group-date label {
+  font-size: 1rem;
+  margin-bottom: 5%;
+}
+
+.input-group-date input {
+  padding: 7%;
+  padding-left: 3%;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: rgba(212, 158, 158, 0.5);
+  color: white;
+  width: 125%;
+}

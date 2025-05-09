@@ -1,0 +1,79 @@
+<div class="admin-dashboard">
+
+  <header class="dashboard-header">
+    <h1>Welcome to Admin Dashboard</h1>
+    <p>Manage Beauty Point efficiently</p>
+    <button (click)="toggleTheme()">
+      <i class="fa" [ngClass]="isDarkMode ? 'fa-sun' : 'fa-moon'"></i>
+    </button>
+  </header>
+
+  <div>
+    <img src="images/background.png" alt="Background" class="background-image" />
+  </div>
+
+  <button class="logout-btn" routerLink="/logout">Logout</button>
+
+  <main class="dashboard-content">
+
+    <section class="dashboard-overview">
+      <div class="card">
+        <i class="fa fa-box"></i>
+        <h3>Products</h3>
+        <p>Manage products in a system</p>
+        <button routerLink="/admin/products">View Products</button>
+      </div>
+      <div class="card">
+        <i class="fa fa-calendar"></i>
+        <h3>Reservations</h3>
+        <p>Manage and track reservations</p>
+        <button routerLink="/admin/reservations">View Reservations</button>
+      </div>
+      <div class="card">
+        <i class="fa fa-spa"></i>
+        <h3>Treatments</h3>
+        <p>Manage beauty treatments</p>
+        <button routerLink="/admin/treatments">View Treatments</button>
+      </div>
+      <div class="card">
+        <i class="fa fa-users"></i>
+        <h3>User Profiles</h3>
+        <p>Manage user profiles</p>
+        <button routerLink="/admin/users">View Profiles</button>
+      </div>
+      <div class="card">
+        <i class="fa fa-credit-card"></i>
+        <h3>Payments</h3>
+        <p>View and manage transactions</p>
+        <button routerLink="/admin/payments">View Payments</button>
+      </div>
+    </section>
+
+    <section class="dashboard-details">
+      <h2>Quick Overview</h2>
+      <div class="statistics">
+        <div class="stat-item">
+          <h3>{{stats?.totalProducts}}</h3>
+          <p>Total Products</p>
+        </div>
+        <div class="stat-item">
+          <h3>{{stats?.totalReservations}}</h3>
+          <p>Total Reservations</p>
+        </div>
+        <div class="stat-item">
+          <h3>{{stats?.totalTreatments}}</h3>
+          <p>Total Treatments</p>
+        </div>
+        <div class="stat-item">
+          <h3>{{stats?.totalClients}}</h3>
+          <p>Total Clients</p>
+        </div>
+        <div class="stat-item">
+          <h3>{{stats?.totalRevenue}} BAM</h3>
+          <p>Total Revenue</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+

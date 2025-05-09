@@ -1,0 +1,75 @@
+<div class="modal">
+  <button class="close-btn" (click)="closeModal()">✖</button>
+  <h2>Update Product</h2>
+
+  <form *ngIf="productForm" [formGroup]="productForm" (ngSubmit)="submitForm()" enctype="multipart/form-data">
+
+    <div>
+      <label for="productName">Product Name:</label>
+      <input id="productName" formControlName="productName" type="text" />
+      <div *ngIf="productForm.get('productName')?.invalid && productForm.get('productName')?.touched" class="error">
+        Product name is required.
+      </div>
+    </div>
+
+    <div>
+      <label for="productPrice">Price:</label>
+      <input id="productPrice" formControlName="productPrice" type="number" />
+      <div *ngIf="productForm.get('productPrice')?.invalid && productForm.get('productPrice')?.touched" class="error">
+        <span *ngIf="productForm.get('productPrice')?.errors?.['required']">Price is required.</span>
+        <span *ngIf="productForm.get('productPrice')?.errors?.['min']">Price must be at least 0.</span>
+      </div>
+    </div>
+
+    <div>
+      <label for="productDescription">Description:</label>
+      <textarea id="productDescription" formControlName="productDescription"></textarea>
+      <div *ngIf="productForm.get('productDescription')?.invalid && productForm.get('productDescription')?.touched" class="error">
+        Description is required.
+      </div>
+    </div>
+
+    <div>
+      <label for="productCategory">Category:</label>
+      <select id="productCategory" formControlName="productCategoryId">
+        <option value="" disabled selected>Select category</option>
+        <option *ngFor="let category of categories" [value]="category.id">
+          {{ category.productCategoryName }}
+        </option>
+      </select>
+      <div *ngIf="productForm.get('productCategoryId')?.invalid && productForm.get('productCategoryId')?.touched" class="error">
+        Please select a category.
+      </div>
+    </div>
+
+    <div>
+      <label for="productVolume">Volume:</label>
+      <input id="productVolume" formControlName="volume" type="number" />
+      <div *ngIf="productForm.get('volume')?.invalid && productForm.get('volume')?.touched" class="error">
+        Volume is required.
+      </div>
+    </div>
+
+    <div *ngIf="currentProduct.imagePath">
+      <label>Current Image: </label>
+      <img [src]="getImageUrl(currentProduct.imagePath)" alt="Product Image" class="current-image" />
+    </div>
+
+    <input type="hidden" formControlName="imagePath" [value]="currentProduct.imagePath" />
+
+    <div>
+      <label for="productImage">Choose new image:</label>
+      <input type="file" id="productImage" (change)="onFileSelected($event)" />
+    </div>
+
+    <button type="submit" [disabled]="isSubmitting">Update Product</button>
+
+    <div *ngIf="errorMessage" class="error">
+      {{ errorMessage }}
+    </div>
+
+    <div *ngIf="successMessage" class="success">
+      {{ successMessage }}
+    </div>
+  </form>
+</div>

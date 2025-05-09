@@ -1,0 +1,55 @@
+<div class="modal">
+  <button class="close-btn" (click)="closeModal()">✖</button>
+  <h2>Create New Treatment</h2>
+
+  <form *ngIf="treatmentForm" [formGroup]="treatmentForm" (ngSubmit)="submitForm()" enctype="multipart/form-data">
+    <div>
+      <label for="serviceName">Treatment Name:</label>
+      <input id="serviceName" formControlName="serviceName" type="text" />
+      <div *ngIf="treatmentForm.get('serviceName')?.invalid && treatmentForm.get('serviceName')?.touched" class="error">
+        Treatment name is required.
+      </div>
+    </div>
+
+    <div>
+      <label for="treatmentPrice">Price:</label>
+      <input id="treatmentPrice" formControlName="treatmentPrice" type="number" />
+      <div *ngIf="treatmentForm.get('treatmentPrice')?.invalid && treatmentForm.get('treatmentPrice')?.touched" class="error">
+        <span *ngIf="treatmentForm.get('treatmentPrice')?.errors?.['required']">Price is required.</span>
+        <span *ngIf="treatmentForm.get('treatmentPrice')?.errors?.['min']">Price must be at least 0.</span>
+      </div>
+    </div>
+
+    <div>
+      <label for="treatmentDescription">Description:</label>
+      <textarea id="treatmentDescription" formControlName="treatmentDescription"></textarea>
+      <div *ngIf="treatmentForm.get('treatmentDescription')?.invalid && treatmentForm.get('treatmentDescription')?.touched" class="error">
+        Description is required.
+      </div>
+    </div>
+
+    <div>
+      <label for="treatmentCategory">Category:</label>
+      <select id="treatmentCategory" formControlName="treatmentCategoryId">
+        <option value="" disabled selected>Select category</option>
+        <option *ngFor="let category of categories" [value]="category.id">
+          {{ category.categoryName }}
+        </option>
+      </select>
+      <div *ngIf="treatmentForm.get('treatmentCategoryId')?.invalid && treatmentForm.get('treatmentCategoryId')?.touched" class="error">
+        Please select a category.
+      </div>
+    </div>
+
+
+    <button type="submit" [disabled]="isSubmitting">Create Treatment</button>
+
+    <div *ngIf="errorMessage" class="error">
+      {{ errorMessage }}
+    </div>
+
+    <div *ngIf="successMessage" class="success">
+      {{ successMessage }}
+    </div>
+  </form>
+</div>

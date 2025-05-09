@@ -1,0 +1,85 @@
+<body>
+<div class="background-image">
+  <img src="images/background.png" alt="Background">
+</div>
+
+<aside class="sidebar">
+  <div class="login-container">
+    <div class="title-container">
+      <h1>BeautyPoint</h1>
+      <p>Shopping cart</p>
+    </div>
+  </div>
+
+  <ul class="nav-links">
+    <li><a href="#" routerLink="/product-category">Shop</a></li>
+    <li><a href="#" routerLink="/favorites">Favorites</a></li>
+    <li><a href="#" routerLink="/save-for-later">Save for later</a></li>
+    <li><a href="#">My profile</a></li>
+    <li><a href="#">About us</a></li>
+  </ul>
+
+  <div class="sidebar-art">
+    <img src="images/woman-outline.png" alt="Art" />
+  </div>
+</aside>
+
+<div class="checkout-card">
+  <h3>Total Price: {{ totalPrice | currency: 'BAM ' }}</h3>
+  <button class="checkout-btn" (click)="showCheckoutForm = !showCheckoutForm">Proceed to Checkout</button>
+</div>
+
+<div class="products-container">
+  <ng-container *ngIf="cartItems.length > 0; else noProducts">
+    <div *ngFor="let item of cartItems" class="product-card">
+      <img [src]="getImageUrl(item.product.imagePath)" alt="{{ item.product?.name }}" class="product-image">
+
+      <p class="product-title">{{ item.product?.name }}</p>
+      <p>{{ item.product.price }} BAM</p>
+      <p class="quantity-container">
+        <button class="btn-minus" (click)="updateQuantity(item, -1)" [disabled]="item.quantity <= 1">-</button>
+        <span>{{ item.quantity }}</span>
+        <button class="btn-plus" (click)="updateQuantity(item, 1)">+</button>
+      </p>
+      <p>Total: {{ item.price }} BAM</p>
+
+      <button class="save-btn" (click)="saveForLater(item.product)">Save For Later</button>
+      <button class="remove-btn" (click)="removeFromCart(item.id)">Remove</button>
+    </div>
+  </ng-container>
+</div>
+
+<ng-template #noProducts>
+  <p>Cart is empty.</p>
+</ng-template>
+
+<div class="checkout-container" *ngIf="showCheckoutForm">
+  <button class="close-btn" (click)="showCheckoutForm = false">✖</button>
+  <div *ngIf="cartItems.length > 0">
+    <h2>Checkout</h2>
+    <form (ngSubmit)="onCheckout()">
+      <label for="address">Address:</label>
+      <input type="text" id="address" [(ngModel)]="checkoutModel.address" name="address" required />
+
+      <label for="paymentMethod">Payment Method:</label>
+      <select id="paymentMethod" [(ngModel)]="checkoutModel.paymentMethod" (change)="onPaymentMethodChange()" name="paymentMethod" required>
+        <option value="Card">Card</option>
+        <option value="CashOnDelivery">Cash on Delivery</option>
+      </select>
+
+      <div *ngIf="checkoutModel.paymentMethod === 'Card'">
+        <div id="card-element" class="stripe-card-element"></div>
+        <div id="card-errors" role="alert"></div>
+      </div>
+
+      <button class="purchase-btn" type="submit">Complete Purchase</button>
+    </form>
+  </div>
+</div>
+
+<div *ngIf="cartItems.length === 0">
+  <p>Your cart is empty.</p>
+</div>
+
+<button class="back-btn" routerLink="/product-category">Back</button>
+</body>

@@ -1,0 +1,91 @@
+<body>
+<div class="background-image">
+  <img src="images/background.png" alt="Background">
+</div>
+
+<aside class="sidebar">
+
+  <div class="login-container">
+    <div class="title-container">
+      <h1>BeautyPoint</h1>
+      <p>Hair care</p>
+    </div>
+  </div>
+
+  <ul class="nav-links">
+    <li><a href="#">Appointments</a></li>
+    <li><a href="#" routerLink="/favorites" (drop)="onDrop($event)" (dragover)="onDragOver($event)">Favorites</a></li>
+    <li><a href="#" routerLink="/shopping-cart">Shopping cart</a></li>
+    <li><a href="#" routerLink="/skin-care">Skin products</a></li>
+    <li><a href="#" routerLink="/body-care">Body products</a></li>
+    <li><a href="#">About us</a></li>
+  </ul>
+
+  <div class="sidebar-art">
+    <img src="images/woman-outline.png" alt="Art" />
+  </div>
+</aside>
+
+<div class="input-group">
+  <input
+    type="search"
+    id="search"
+    name="search"
+    placeholder="Search products"
+    [(ngModel)]="searchText"
+    (input)="onSearchChange()"
+    required
+  />
+</div>
+
+<div class="filters">
+  <select id="volume-filter" (change)="onVolumeChange($event)">
+    <option value="">All</option>
+    <option value="50">50ml</option>
+    <option value="100">100ml</option>
+    <option value="150">150ml</option>
+  </select>
+</div>
+
+<div class="sort-container">
+  <button (click)="toggleSortDropdown()" class="sort-button">
+    Sort
+  </button>
+  <div *ngIf="showSortDropdown" class="sort-dropdown">
+    <label for="sortBy">Sort By:</label>
+    <select [(ngModel)]="sortBy" id="sortBy" (change)="onSortChange()">
+      <option value="productName">Name</option>
+      <option value="productPrice">Price</option>
+    </select>
+
+    <label for="sortDirection">Direction:</label>
+    <select [(ngModel)]="sortDirection" id="sortDirection" (change)="onSortChange()">
+      <option value="asc">Ascending</option>
+      <option value="desc">Descending</option>
+    </select>
+  </div>
+</div>
+
+<div class="products-container">
+  <div *ngFor="let product of filteredProducts" class="product-card" draggable="true" (dragstart)="onDragStart($event, product)" (click)="goToDetails(product.id)">
+    <img [src]="product.imageUrl" alt="{{ product.productName }}" class="product-image" />
+    <h3 class="product-title">{{ product.productName }}</h3>
+    <p class="product-price">{{ product.productPrice }} BAM</p>
+    <p>Volume: {{ product.volume }}ml</p>
+
+    <button class="add-btn" (click)="onAddToFavorites(product); $event.stopPropagation()">Add to Favorites</button>
+    <button class="cart-btn" (click)="onAddToCart(product); $event.stopPropagation()">Add to Cart</button>
+  </div>
+
+  <div class="pagination">
+    <button (click)="prevPage()" [disabled]="currentPage === 1" class="page-btn">Previous</button>
+    <span>Page {{ currentPage }}</span>
+    <button (click)="nextPage()" class="page-btn">Next</button>
+  </div>
+
+</div>
+
+<button class="back-btn" routerLink="/product-category">Back</button>
+
+
+</body>

@@ -1,0 +1,51 @@
+<div class="modal">
+  <button class="close-btn" (click)="closeModal()">✖</button>
+  <h2>Update Payment</h2>
+
+  <form [formGroup]="paymentForm" (ngSubmit)="submitForm()">
+    <div>
+      <label for="orderId">Order ID:</label>
+      <input id="orderId" formControlName="orderId" type="number" />
+    </div>
+
+    <div>
+      <label for="paymentDate">Payment Date:</label>
+      <input id="paymentDate" formControlName="paymentDate" type="date">
+    </div>
+
+    <div>
+      <label for="amount">Amount:</label>
+      <input id="amount" formControlName="amount" type="number" />
+    </div>
+
+    <div>
+      <label for="paymentMethod">Payment Method:</label>
+      <select id="paymentMethod" formControlName="paymentMethod">
+        <option value="" disabled selected>Select method</option>
+        <option *ngFor="let method of paymentMethods" [value]="method">
+          {{ method }}
+        </option>
+      </select>
+    </div>
+
+    <div>
+      <label for="paymentStatus">Payment Status:</label>
+      <select id="paymentStatus" formControlName="paymentStatus">
+        <option value="" disabled selected>Select status</option>
+        <option *ngFor="let status of paymentStatuses" [value]="status">
+          {{ status }}
+        </option>
+      </select>
+    </div>
+
+    <div>
+      <label for="transactionId">Transaction ID:</label>
+      <input id="transactionId" formControlName="transactionId" type="number" />
+    </div>
+
+    <button type="submit" [disabled]="isSubmitting">Update Treatment</button>
+
+    <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+    <div *ngIf="successMessage" class="success">{{ successMessage }}</div>
+  </form>
+</div>

@@ -1,0 +1,51 @@
+<div class="modal">
+  <button class="close-btn" (click)="closeModal()">✖</button>
+  <h2>Update User</h2>
+
+  <form [formGroup]="userForm" (ngSubmit)="submitForm()">
+    <div>
+      <label for="firstName">First Name:</label>
+      <input id="firstName" formControlName="firstName" type="text" />
+    </div>
+
+    <div>
+      <label for="lastName">Last Name:</label>
+      <input id="lastName" formControlName="lastName" type="text" />
+    </div>
+
+    <div>
+      <label for="dateOfBirth">Date of Birth:</label>
+      <input id="dateOfBirth" formControlName="dateOfBirth" type="date" />
+    </div>
+
+    <div>
+      <label for="address">Address:</label>
+      <input id="address" formControlName="address" type="text" />
+    </div>
+
+    <div>
+      <label for="city">City:</label>
+      <input id="city" formControlName="city" type="text" />
+    </div>
+
+    <div>
+      <label for="email">Email:</label>
+      <input id="email" formControlName="email" type="text" />
+    </div>
+
+    <div>
+      <label for="username">Username:</label>
+      <input id="username" formControlName="username" type="text" />
+    </div>
+
+    <div>
+      <label for="password">Password:</label>
+      <input id="password" formControlName="password" type="text" />
+    </div>
+
+    <button type="submit" [disabled]="isSubmitting">Update User</button>
+
+    <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+    <div *ngIf="successMessage" class="success">{{ successMessage }}</div>
+  </form>
+</div>

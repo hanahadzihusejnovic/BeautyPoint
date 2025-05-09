@@ -1,0 +1,105 @@
+<div class="body">
+  <div class="title-container">
+    <h1>BeautyPoint</h1>
+    <p>Salon & Shop</p>
+  </div>
+
+  <div class="language-select-container">
+    <select id="language-select" [(ngModel)]="currentLanguage" (change)="changeLanguage($event)" class="language-select">
+      <option *ngFor="let lang of languages" [value]="lang.code">
+        {{ lang.label }}
+      </option>
+    </select>
+  </div>
+
+  <div>
+    <img src="images/background.png" alt="Background" class="background-image"/>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="onRegister()">
+    <div class="input-row">
+      <div class="input-group">
+        <label for="first-name"><i class="fa fa-user"></i> {{ 'REGISTER.firstName' | translate }}</label>
+        <input type="text" id="first-name" formControlName="firstName" placeholder="{{ 'REGISTER.firstName' | translate }}" required>
+        <div *ngIf="form.get('firstName')?.invalid && form.get('firstName')?.touched" class="error-message">
+          <small *ngIf="firstName.errors?.['required']">{{ 'REGISTER.firstNameRequired' | translate }}</small>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label for="address"><i class="fa fa-lock"></i> {{ 'REGISTER.address' | translate }}</label>
+        <input type="address" id="address" formControlName="address" placeholder="{{ 'REGISTER.address' | translate }}" required>
+        <div *ngIf="form.get('address')?.invalid && form.get('address')?.touched" class="error-message">
+          <small *ngIf="address.errors?.['required']">{{ 'REGISTER.addressRequired' | translate }}</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="input-group">
+        <label for="last-name"><i class="fa fa-user"></i> {{ 'REGISTER.lastName' | translate }}</label>
+        <input type="text" id="last-name" formControlName="lastName" placeholder="{{ 'REGISTER.lastName' | translate }}" required>
+        <div *ngIf="form.get('lastName')?.invalid && form.get('lastName')?.touched" class="error-message">
+          <small *ngIf="lastName.errors?.['required']">{{ 'REGISTER.lastNameRequired' | translate }}</small>
+        </div>
+      </div>
+
+      <div class="input-group-date">
+        <label for="date"><i class="fa fa-date"></i> {{ 'REGISTER.dateOfBirth' | translate }}</label>
+        <input type="date" id="date" formControlName="dateOfBirth" placeholder="{{ 'REGISTER.dateOfBirth' | translate }}" required>
+        <div *ngIf="form.get('dateOfBirth')?.invalid && form.get('dateOfBirth')?.touched" class="error-message">
+          <small *ngIf="dateOfBirth.errors?.['required']">{{ 'REGISTER.dateOfBirthRequired' | translate }}</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="input-group">
+        <label for="email"><i class="fa fa-envelope"></i> {{ 'REGISTER.email' | translate }}</label>
+        <input type="email" id="email" formControlName="email" placeholder="{{ 'REGISTER.email' | translate }}" required>
+        <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched" class="error-message">
+          <small *ngIf="email.errors?.['required']">{{ 'REGISTER.emailRequired' | translate }}</small>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label for="username"><i class="fa fa-user"></i> {{ 'REGISTER.username' | translate }}</label>
+        <input type="text" id="username" formControlName="username" placeholder="{{ 'REGISTER.username' | translate }}" required>
+        <div *ngIf="form.get('username')?.invalid && form.get('username')?.touched" class="error-message">
+          <small *ngIf="username.errors?.['required']">{{ 'REGISTER.usernameRequired' | translate }}</small>
+          <small *ngIf="username.errors?.['usernameTaken']">{{ 'REGISTER.usernameTaken' | translate }}</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="input-group">
+        <label for="city"><i class="fa fa-envelope"></i> {{ 'REGISTER.city' | translate }}</label>
+        <input type="city" id="city" formControlName="city" placeholder="{{ 'REGISTER.city' | translate }}" required>
+        <div *ngIf="form.get('city')?.invalid && form.get('city')?.touched" class="error-message">
+          <small *ngIf="city.errors?.['required']">{{ 'REGISTER.cityRequired' | translate }}</small>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label for="password"><i class="fa fa-lock"></i> {{ 'REGISTER.password' | translate }}</label>
+        <input type="password" id="password" formControlName="password" placeholder="{{ 'REGISTER.password' | translate }}" required>
+        <div *ngIf="form.get('password')?.invalid && form.get('password')?.touched" class="error-message">
+          <small *ngIf="password.errors?.['required']">{{ 'REGISTER.passwordRequired' | translate }}</small>
+          <small *ngIf="password.errors?.['minlength']">{{ 'REGISTER.passwordTooShort' | translate }}</small>
+          <small *ngIf="password.errors?.['maxlength']">{{ 'REGISTER.passwordTooLong' | translate }}</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="buttons">
+      <button type="submit" class="btn get-started">{{ 'REGISTER.getStarted' | translate }}</button>
+      <button type="button" class="btn cancel" routerLink="/home">{{ 'REGISTER.cancel' | translate }}</button>
+    </div>
+
+    <div class="sign-up-container">
+      <p>{{ 'REGISTER.alreadyAccount' | translate }} <a routerLink="/login">{{ 'REGISTER.logIn' | translate }}</a></p>
+    </div>
+  </form>
+</div>
+

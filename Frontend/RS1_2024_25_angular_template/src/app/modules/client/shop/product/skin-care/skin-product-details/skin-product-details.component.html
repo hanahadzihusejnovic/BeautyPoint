@@ -1,0 +1,102 @@
+<body>
+<div class="background-image">
+  <img src="images/background.png" alt="Background">
+</div>
+
+<aside class="sidebar">
+  <div class="login-container">
+    <div class="title-container">
+      <h1>BeautyPoint</h1>
+      <p>Skin product details</p>
+    </div>
+  </div>
+
+  <ul class="nav-links">
+    <li><a href="#">Appointments</a></li>
+    <li><a href="#" routerLink="/favorites">Favorites</a></li>
+    <li><a href="#" routerLink="/shopping-cart">Shopping cart</a></li>
+    <li><a href="#" routerLink="/body-care">Body products</a></li>
+    <li><a href="#" routerLink="/hair-care">Hair products</a></li>
+    <li><a href="#">About us</a></li>
+  </ul>
+
+  <div class="sidebar-art">
+    <img src="images/woman-outline.png" alt="Art" />
+  </div>
+</aside>
+
+<div class="products-container">
+  <div *ngIf="product" class="product-card" >
+    <img [src]="getImageUrl(product.imagePath)" alt="{{ product.productName }}" class="product-image"/>
+  </div>
+
+  <div *ngIf="product" class="product-info" >
+    <h2 class="product-title">{{ product.productName }}</h2>
+    <p class="product-price">{{ product.productPrice }} BAM</p>
+    <p class="product-description">Description: {{ product.productDescription }}</p>
+
+    <div class="buttons">
+      <button class="add-btn" (click)="onAddToFavorites(product)">Add to Favorites</button>
+      <button class="cart-btn" (click)="addToCart()">Add to Cart</button>
+    </div>
+  </div>
+
+  <div class="product-card-reviews">
+    <div class="product-reviews">
+      <h3>Reviews</h3>
+      <p *ngIf="reviews.length === 0" class="no-reviews">There are no reviews for this product.</p>
+
+      <div *ngFor="let review of reviews" class="review">
+        <div class="review-header">
+          <strong>{{ review.userFirstName }}</strong>
+          <button class="dots-menu" (click)="toggleDropdown(review)">•••</button>
+
+          <div *ngIf="review.showMenu" class="dropdown-menu">
+            <button class="dropdown-item" (click)="openUpdateReviewDialog(review)">Update Review</button>
+            <button class="dropdown-item delete" (click)="review.id ? deleteReview(review.id) : null">Delete Review</button>
+          </div>
+        </div>
+        <span class="review-rating">⭐ {{ review.productRating }}/5</span>
+        <p class="review-comment">{{ review.productComment }}</p>
+      </div>
+    </div>
+
+    <div class="review-info">
+      <textarea [(ngModel)]="reviewText" placeholder="Give us your review"></textarea>
+
+      <select [(ngModel)]="selectedRating" >
+        <option [value]="1">⭐</option>
+        <option [value]="2">⭐⭐</option>
+        <option [value]="3">⭐⭐⭐</option>
+        <option [value]="4">⭐⭐⭐⭐</option>
+        <option [value]="5">⭐⭐⭐⭐⭐</option>
+      </select>
+
+      <button (click)="addReview()">OK</button>
+    </div>
+  </div>
+</div>
+
+<div class="update-review-container" *ngIf="showUpdateForm">
+  <h2>Update Review</h2>
+
+  <label for="rating">Rating:</label>
+  <select id="rating" [(ngModel)]="updateReview.productRating">
+    <option [value]="1">⭐</option>
+    <option [value]="2">⭐⭐</option>
+    <option [value]="3">⭐⭐⭐</option>
+    <option [value]="4">⭐⭐⭐⭐</option>
+    <option [value]="5">⭐⭐⭐⭐⭐</option>
+  </select>
+
+  <label for="comment">Comment:</label>
+  <textarea id="comment" [(ngModel)]="updateReview.productComment" placeholder="Enter comment"></textarea>
+
+  <div class="form-actions">
+    <button class="cancel-btn" (click)="onCancelUpdate()">Cancel</button>
+    <button class="save-btn" (click)="onSaveUpdate()">Save</button>
+  </div>
+</div>
+
+<button class="back-btn" routerLink="/skin-care">Back</button>
+</body>

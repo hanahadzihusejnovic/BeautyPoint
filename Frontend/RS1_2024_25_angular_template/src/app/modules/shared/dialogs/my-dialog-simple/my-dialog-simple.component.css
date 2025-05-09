@@ -1,0 +1,37 @@
+h1[mat-dialog-title] {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #5a2424;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+div[mat-dialog-content] {
+  font-size: 1.1rem;
+  color: #5a2424;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+div[mat-dialog-actions] {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+button[mat-button] {
+  background-color: #f4d8d8;
+  color: #5a2424;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+button[mat-button]:hover {
+  background-color: #e3bebe;
+  transform: scale(1.1);
+}
